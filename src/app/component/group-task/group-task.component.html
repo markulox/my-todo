@@ -1,0 +1,26 @@
+<div class="whole">
+    <!-- ตรงนี้จะเป็นส่วนหัวข้อ ที่รวม Complete/Incomplete task เอาไว้ -->
+    <!-- เมื่อ click ที่หัวข้อ จะไป run method toggleExpand() ซึ่งเปลี่ยนค่าตัวแปร isExpanded ใน group-task.component.ts-->
+    <div class="header" (click)="toggleExpand()">
+        <div class="title-counter">
+            <!-- สำหรับแสดงจำนวน tasks ที่ได้รับมาจาก app.component.html -->
+            <h2 class="counter">{{tasks.length}}</h2>
+            <!-- แสดง title ที่ถูกส่งเข้ามาจาก app.component.html ถ้า run ใน app จะเป็นคำว่า Incomplete กับ complete -->
+            <h2>{{title}}</h2>
+        </div>
+        <div class="line-decor"> </div>
+        <!-- svg drop-down-icon: ถ้าเกิดหัวข้อหุบเพื่อซ่อน Task อยู่ (isExpanded เป็น false) จะใส่ class css invert-drop-down -->
+        <svg class="drop-down-icon" [class.invert-drop-down]="!isExpanded" width="28" height="27" viewBox="0 0 28 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 9L14 19L25 9" stroke="black" stroke-width="4" stroke-linecap="round"/>
+            </svg>
+            
+    </div>
+    <!-- ถ้าส่วนหัวข้อ ได้ถูกคลิ๊กไว้ว่า กาง task ออก ก็ค่อยวาด component task หลายๆตัวออกมา -->
+    @if (isExpanded) {
+        <!-- ซึ่ง tasks นี้เป็น Input ที่รับค่าเข้ามาอีกทีจาก app.component.html -->
+        @for (t of tasks; track $index) {
+            <!-- แล้วแต่ละ t (มันคือก้อน task แต่ละก้อน) ก็ส่งต่อให้ todo-item.component ไปวาดต่อ -->
+            <app-todo-item [task]="t"></app-todo-item>
+        }
+    }
+</div>

@@ -1,0 +1,25 @@
+/* You can add global styles to this file, and also import other style files */
+
+// ตรงนี้คือการ Import font เข้ามา ซึ่งส่วนตัวชอบ font Jetbrains Mono มากๆ
+@font-face {
+    font-family: 'Jetbrains Mono';
+    src: url('../assets/jetbrains-ttf/JetBrainsMonoNL-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Jetbrains Mono Extra Bold';
+    src: url('../assets/jetbrains-ttf/JetBrainsMono-ExtraBold.ttf');
+}
+
+// แล้วก็เอามาใช้ตรงนี้เลย
+h2, p {
+    font-family: 'Jetbrains Mono';
+}
+
+h1 {
+    font-family: 'Jetbrains Mono Extra Bold';
+    font-weight: 900;
+    font-size: 90px;
+    margin-left: -23px;
+    margin-top: -0px;
+}

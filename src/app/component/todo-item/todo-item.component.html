@@ -1,0 +1,26 @@
+<!-- สำหรับวาด todo-item โดยไอเดียคือการแบ่งฝั่งซ้ายและฝั่งขวา -->
+<div class="todo-item">
+    <!-- โดยฝั่งซ้าย จะขยายจนเกือบสุด เพื่อรองรับพิ้นที่สำหรับการ click toggleIsComplete() ของ task นั้นๆ -->
+    <div class="on-left" (click)="toggleIsComplete()">
+        @if (task.is_complete) {
+            <!-- ถ้าเกิดว่า task นั้น complete แล้ว ให้วาด svg ด้านล่าง (เป็นรูป check box ที่ติ๊กแล้ว) -->
+            <svg class="todo-checkbox" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="1" y="1" width="20" height="20" stroke="#9a9a9a" stroke-width="2"/>
+                <path d="M9.55001 18L3.85001 12.3L5.27501 10.875L9.55001 15.15L18.725 5.97498L20.15 7.39998L9.55001 18Z" fill="#9a9a9a"/>
+                </svg>                
+        } @else {
+            <!-- ถ้าเกิดว่า task นั้น Incomplete ให้วาด svg ด้านล่าง (เป็นรูป check box ที่ยังไม่ติ๊ก) -->
+            <svg class="todo-checkbox" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="1" y="1" width="20" height="20" stroke="black" stroke-width="2"/>
+                </svg>
+        }
+        <!-- ถ้า task นั้น complete แล้วให้ set class todo-task-string-completed (ซึ่งทำให้ text เป็นสีเทาพร้อมกับขีดค่า) -->
+        <p class="todo-task-string" [class.todo-task-string-completed]="task.is_complete">{{task.detail}}</p>
+    </div>
+    <!-- ส่วนฝั่งขวา จะมีแค่ปุ่มลบ Task ที่ตอน click จะไปเรียก removeTask()  -->
+    <div class="on-right">
+        <svg (click)="removeTask()" class="delete-button" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12L19 6.41Z" fill="black"/>
+            </svg>
+    </div>
+</div>

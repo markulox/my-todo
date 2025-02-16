@@ -1,0 +1,27 @@
+<!-- Component นี้สำหรับทำ Background Text ขอไม่อธิบาย -->
+<div class="text-effect-container">
+    <h1 class="title-theme">&#64;ToDo</h1>
+    <h1 class="text-preview">
+        @for (stringPreview of taskManagementService.getPreviewStrings(); track $index) {
+            {{stringPreview|uppercase}}
+        }
+    </h1>
+</div>
+
+
+<div class="whole">
+    <div class="container">
+        <!-- ส่วนนี้สำหรับ Input Text Component -->
+        <div class="new-task-input-block">
+            <!-- ตัวนี้คือ Input Text ที่เชื่อมกับตัวแปร pendingTask ในไฟล์ app.component.ts -->
+            <input class="new-task-input" [(ngModel)]="pendingTask" placeholder="Enter your new task here..."> 
+            
+            <!-- ส่วนตัวนี้คือปุ่ม ADD ที่จะไปเรียก function addPendingTask() ในไฟล์ app.component.ts -->
+            <button class="new-task-add-button" (click)="addPendingTask()">ADD</button>
+        </div>
+        <!-- Component group-task ที่รับค่า title เป็น Incomplete และส่งรายการ Todo list ที่เป็น Incomplete -->
+        <app-group-task title="Incomplete" [tasks]="taskManagementService.getIncompleteTask()"></app-group-task>
+        <!-- Component group-task ที่รับค่า title เป็น Complete และส่งรายการ Todo list ที่ Complete แล้ว -->
+        <app-group-task title="Complete" [tasks]="taskManagementService.getCompleteTask()"></app-group-task>
+    </div>
+</div>
